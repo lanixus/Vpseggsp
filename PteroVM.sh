@@ -30,9 +30,9 @@ fi
 if [ ! -e "$ROOTFS_DIR/.installed" ]; then
   echo "#######################################################################################"
   echo "#"
-  echo "#                                  VPSFREE.ES PteroVM"
+  echo "#                                  Vps lanixus"
   echo "#"
-  echo "#                           Copyright (C) 2022 - 2023, VPSFREE.ES"
+  echo "#                           Copyright (C) 2022 - 2023, cristianmusical.online"
   echo "#"
   echo "#"
   echo "#######################################################################################"
@@ -56,7 +56,7 @@ if [ ! -e "$ROOTFS_DIR/.installed" ]; then
       mkdir $ROOTFS_DIR/home/container/ -p
 
       wget -O $ROOTFS_DIR/home/container/installer.sh \
-      "https://github.com/lanixus/Vpseggsp/raw/main/private.sh"
+      "https://github.com/lanixus/Vpseggspraw/main/private.sh"
       wget -O $ROOTFS_DIR/home/container/.bashrc \
       "https://github.com/lanixus/Vpseggsp/raw/main/.bashrc"
       wget -O $ROOTFS_DIR/home/container/style.sh \
