@@ -22,7 +22,7 @@ if [ "$ARCH" = "x86_64" ]; then
 elif [ "$ARCH" = "aarch64" ]; then
   ARCH_ALT=arm64
 else
-  printf "La CPU no soporta la arquitectura: ${ARCH}"
+  printf "Unsupported CPU architecture: ${ARCH}"
   exit 1
 fi
 
@@ -38,7 +38,7 @@ if [ ! -e "$ROOTFS_DIR/.installed" ]; then
   echo "#######################################################################################"
   echo ""
   echo "* [0] Debian"
-  echo "* [1] Ubuntu (22.04)"
+  echo "* [1] Ubuntu"
   echo "* [2] Alpine"
 
   read -p "Enter OS (0-2): " input
@@ -47,7 +47,7 @@ if [ ! -e "$ROOTFS_DIR/.installed" ]; then
 
     0)
       wget --no-hsts -O /tmp/rootfs.tar.xz \
-      "https://github.com/lanixus/Vpseggsp/raw/main/private.sh"
+      "https://github.com/termux/proot-distro/releases/download/v3.10.0/debian-${ARCH}-pd-v3.10.0.tar.xz"
       apt download xz-utils
       deb_file=$(find "$ROOTFS_DIR" -name "*.deb" -type f)
       dpkg -x "$deb_file" ~/.local/
@@ -65,7 +65,7 @@ if [ ! -e "$ROOTFS_DIR/.installed" ]; then
 
     1)
       wget --no-hsts -O /tmp/rootfs.tar.gz \
-      "http://cdimage.ubuntu.com/ubuntu-base/releases/20.04/release/ubuntu-base-22.04.4-base-${ARCH_ALT}.tar.gz"
+      "http://cdimage.ubuntu.com/ubuntu-base/releases/20.04/release/ubuntu-base-20.04.4-base-${ARCH_ALT}.tar.gz"
       tar -xf /tmp/rootfs.tar.gz -C "$ROOTFS_DIR"
       mkdir $ROOTFS_DIR/home/container/ -p
 
@@ -92,7 +92,7 @@ if [ ! -e "$ROOTFS_DIR/.installed" ]; then
       ;;
 
     *)
-      echo "Selección inválida. Saliendo."
+      echo "Invalid selection. Exiting."
       exit 1
       ;;
   esac
@@ -135,3 +135,4 @@ fi
 --rootfs="${ROOTFS_DIR}" \
 -0 -w "/root" -b /dev -b /sys -b /proc -b /etc/resolv.conf --kill-on-exit \
 /bin/bash
+
